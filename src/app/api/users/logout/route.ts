@@ -6,6 +6,7 @@ export async function GET(){
             message: "Logout successfuly",
             success: true,
         })
+        // Clearing cookie (or removing token from cookie);
         response.cookies.set("token", "", {
             httpOnly: true, expires: new Date(0)
         });
