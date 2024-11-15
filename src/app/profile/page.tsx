@@ -6,7 +6,9 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function ProfilePage() {
+
     const router = useRouter();
+
     const logout = async () => {
         try {
             await axios.get('/api/users/logout')
@@ -19,6 +21,7 @@ export default function ProfilePage() {
     }
 
     const [data, setData] = useState("nothing");
+    
     const getUserDetails = async () => {
         const res = await axios.get('/api/users/me');
         console.log(res.data);

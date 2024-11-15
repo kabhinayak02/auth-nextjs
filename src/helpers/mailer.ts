@@ -24,7 +24,7 @@ export const sendEmail = async({email, emailType, userId}: any)=>{
             }
           });
 
-          const mailOptions = {
+        const mailOptions = {
             from: 'kabhinayak02@gmail.com',
             to: email,
             subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
@@ -33,8 +33,7 @@ export const sendEmail = async({email, emailType, userId}: any)=>{
             </p>`
         }
 
-        const mailresponse = await transport.sendMail
-        (mailOptions);
+        const mailresponse = await transport.sendMail(mailOptions);
         return mailresponse;
 
     } catch (error: any) {

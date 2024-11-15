@@ -7,7 +7,7 @@ connect();
 
 export async function GET(request: NextRequest){
     try {
-        // It returns the user id; 
+        // It returns the user id; // As server only send user Id ONLY;
         const userId = await getDataFromToken(request);
 
         // Get all the data of user from db execpt password 

@@ -3,11 +3,12 @@ import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { NextResponse } from 'next/server';
 import { toast } from 'react-hot-toast';
 
 export default function LoginPage() {
-    const router = useRouter();
+
+    const router = useRouter(); // to use router to route profile after successfuly login;
+    // stores user info from login input;
     const [user, setUser] = React.useState({
         email: "",
         password: "",
@@ -15,13 +16,14 @@ export default function LoginPage() {
 
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
+
     const onLogin = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("/api/users/login", user);
+            const response = await axios.post("/api/users/login", user); // passes the user to server;
             console.log("Login Successfull", response.data);
             toast.success("Login Success");
-            router.push("/profile");
+            router.push("/profile"); // route to the profile is user successfully login;
         } catch (error: any) {
             console.log("Login Failed", error.message);
             toast.error(error.message);

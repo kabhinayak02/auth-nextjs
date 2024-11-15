@@ -9,15 +9,18 @@ import { toast } from "react-hot-toast";
 
 
 export default function SignupPage() {
-    const router = useRouter();
-    const [user, setUser] = React.useState({
+    const router = useRouter(); // for using route function;
+    // stores users info email, password, username;
+    const [user, setUser] = React.useState({ 
         email: "",
         password: "",
         username: "",
     })
-    const [buttonDisabled, setButtonDisabled] = React.useState(false);
+
+    const [buttonDisabled, setButtonDisabled] = React.useState(false); 
     const [loading, setLoading] = React.useState(false);
 
+    // When pressing Signp button 
     const onSignup = async () => {
         try {
             setLoading(true);
@@ -33,7 +36,7 @@ export default function SignupPage() {
             setLoading(false);
         }
     }
-
+    //
     useEffect(() => {
         if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
             setButtonDisabled(false);
@@ -74,11 +77,11 @@ export default function SignupPage() {
             onChange={(e) => setUser({...user, password: e.target.value})}
             placeholder="password"
             />
-            <button
-            onClick={onSignup}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No signup" : "Signup"}</button>
-            <Link href="/login">Visit login page</Link>
-        </div>
+        <button
+        onClick={onSignup}
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No signup" : "Signup"}</button>
+        <Link href="/login">Visit login page</Link>
+    </div>
     )
 
 }

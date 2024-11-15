@@ -2,19 +2,18 @@ import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import { isJSDocThrowsTag } from "typescript";
 import jwt from 'jsonwebtoken';
 
-connect();
+connect(); // to connect db;
 
 export async function POST(request: NextRequest){
     try {
         const reqBody = await request.json();
-        const {email, password} = reqBody;
+        const {email, password} = reqBody; // email and password are only 2 input in login page;
         console.log(reqBody);
 
         // Check if user exist or not;
-        const user = await User.findOne({email}); // This is comming from db
+        const user = await User.findOne({email}); // This is comming from db // We are only checking for email;
         if(!user){
             return NextResponse.json({error: "User does not exist"}, {status: 400})
         }

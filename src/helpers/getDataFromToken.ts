@@ -6,9 +6,11 @@ export const getDataFromToken = (request: NextRequest)=>{
         // get token value from cookies and stores in token const;
         // If the cookie is not found, it defaults to an empty string.
         const token =  request.cookies.get('token')?.value || '';
-        // extracting data from token {i.e. username, email, password};
+
+        // extracting data from token {i.e. id, username, email};
         const decodedToken:any = jwt.verify(token, process.env.TOKEN_SECRET!);
-        // Return user id only;
+
+        // Return user id ONLY;
         return decodedToken.id;
 
     } catch (error: any) {
